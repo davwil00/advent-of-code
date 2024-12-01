@@ -18,13 +18,25 @@ class HistorianHysteriaTest {
 
     @Test
     fun `should get correct answer for part 1`() {
-         assertThat(testSubject.part1())
+        assertThat(HistorianHysteria(readInputLines(1)).part1())
+            .isEqualTo(1722302)
+    }
+
+    @Test
+    fun `should get the correct answer for part 1 with test input`() {
+        assertThat(testSubject.part1())
             .isEqualTo(11)
     }
 
     @Test
     fun `should get correct answer for part 2`() {
-         assertThat(testSubject.part2())
+         assertThat(HistorianHysteria(readInputLines(1)).part2())
+            .isEqualTo(20373490)
+    }
+
+    @Test
+    fun `should get the correct answer for part 2 with test input`() {
+        assertThat(testSubject.part2())
             .isEqualTo(31)
     }
 }

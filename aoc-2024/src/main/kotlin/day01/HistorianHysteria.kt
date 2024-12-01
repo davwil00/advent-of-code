@@ -3,33 +3,32 @@ package day01
 import utils.readInputLines
 import kotlin.math.abs
 
-class HistorianHysteria(private val input: List<String>) {
-    fun parseInput(): List<List<Int>> {
-        val rows = input.map {
-            val items = it.split(Regex("\\s+"))
-            items[0].toInt()to items[1].toInt()
-        }
-        return listOf(rows.map{it.first}, rows.map{it.second})
-    }
+class HistorianHysteria(input: List<String>) {
+
+    private val numberLists = parseInput(input)
+
+    private fun parseInput(input: List<String>): Pair<List<Int>, List<Int>> =
+        input.map {
+            val (first, second) = it.split("   ")
+            first.toInt() to second.toInt()
+        }.unzip()
 
     fun part1(): Int {
-        val (list1, list2) = parseInput()
-        val sortedList1 = list1.sorted()
-        val sortedList2 = list2.sorted()
-        return sortedList1.zip(sortedList2).sumOf { (a, b) ->
+        val sortedLeftList1 = numberLists.first.sorted()
+        val sortedRight2 = numberLists.second.sorted()
+        return sortedLeftList1.zip(sortedRight2).sumOf { (a, b) ->
             abs(a - b)
         }
     }
 
     fun part2(): Int {
-        val (list1, list2) = parseInput()
-        val occurrenceCount = list2.groupBy { it }.mapValues { it.value.size }
-        return list1.sumOf { it * occurrenceCount.getOrDefault(it, 0) }
+        val occurrenceCount = numberLists.second.groupingBy { it }.eachCount()
+        return numberLists.first.sumOf { it * occurrenceCount.getOrDefault(it, 0) }
     }
 }
 
 fun main() {
-    val historianhysteria = HistorianHysteria(readInputLines(1))
-    println(historianhysteria.part1())
-    println(historianhysteria.part2())
+    val historianHysteria = HistorianHysteria(readInputLines(1))
+    println(historianHysteria.part1())
+    println(historianHysteria.part2())
 }
