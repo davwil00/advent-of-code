@@ -14,8 +14,8 @@ lowerName=$(echo "${name}" | tr "[:upper:]" "[:lower:]")
 
 mkdir "aoc-${year}/src/main/kotlin/day$day"
 mkdir "aoc-${year}/src/test/kotlin/day$day"
-mkdir "aoc-${year}/src/main/resources/day$day"
-touch "aoc-${year}/src/main/resources/day$day/input.txt"
+mkdir "aoc-inputs/${year}/day$day"
+touch "aoc-inputs/${year}/day$day/input.txt"
 
 printf "package day%s
 
