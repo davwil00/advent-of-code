@@ -37,7 +37,7 @@ class BridgeRepairTest {
 
     @Test
     fun `should get correct answer for part 2`() {
-        // assertThat(BridgeRepair(readInputLines(7)).part2())
-        //    .isEqualTo()
+         assertThat(BridgeRepair(readInputLines(7)).part2())
+            .isEqualTo(494257637791070)
     }
 }
