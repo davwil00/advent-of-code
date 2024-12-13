@@ -6,12 +6,13 @@ import utils.splitToString
 
 class GuardGallivant(private val input: List<String>) {
 
-    fun parseMap() = input.flatMapIndexed { rowIdx, line ->            line.splitToString()
-                .withIndex()
-                .associate { (colIdx, value) ->
-                    Pair(Coordinate(colIdx, rowIdx), value)
-                }.entries
-        }.associate { it.key to it.value }
+    fun parseMap() = input.flatMapIndexed { rowIdx, line ->
+        line.splitToString()
+            .withIndex()
+            .associate { (colIdx, value) ->
+                Pair(Coordinate(colIdx, rowIdx), value)
+            }.entries
+    }.associate { it.key to it.value }
 
     private fun runSimulation(map: Map<Coordinate, String>, startingPosition: Position): Set<Coordinate> {
         var currentPosition = startingPosition
@@ -28,7 +29,6 @@ class GuardGallivant(private val input: List<String>) {
         var currentPosition = startingPosition
         val placesVisited = mutableSetOf<Position>()
         while (map.containsKey(currentPosition.currentCell)) {
-            println("${currentPosition.currentCell.x} ${currentPosition.currentCell.y}")
             if (!placesVisited.add(currentPosition)) {
                 return true
             }
@@ -53,22 +53,23 @@ class GuardGallivant(private val input: List<String>) {
         return possiblePositions.parallelStream().map { position ->
             val map = originalMap.toMutableMap()
             map[position] = "#"
-            containsLoop(map, startingPosition).also { if (it) println("${position.x} ${position.y}" ) }
+            containsLoop(
+                map,
+                startingPosition
+            )
         }.filter { it }.count()
     }
 
     data class Position(val currentCell: Coordinate, private val currentDirection: Direction) {
         fun move(map: Map<Coordinate, String>): Position {
             return if (map[currentCell + currentDirection.coordinateDelta] == "#") {
-                val newDirection = when(currentDirection) {
+                val newDirection = when (currentDirection) {
                     Direction.N -> Direction.E
                     Direction.E -> Direction.S
                     Direction.S -> Direction.W
                     Direction.W -> Direction.N
                 }
-                val newPosition = Position(currentCell + newDirection.coordinateDelta, newDirection)
-                val newMap = map.toMutableMap()
-                newMap[newPosition.currentCell] = newDirection.direction
+                val newPosition = Position(currentCell, newDirection)
                 newPosition
             } else {
                 Position(currentCell + currentDirection.coordinateDelta, currentDirection)

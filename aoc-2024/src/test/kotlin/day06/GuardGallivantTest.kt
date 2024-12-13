@@ -50,7 +50,7 @@ class GuardGallivantTest {
         val test = GuardGallivant(readInputLines(6))
         val map = test.parseMap().toMutableMap()
         val startingPosition = Position(map.filterValues { it == "^" }.keys.first(), Direction.N)
-        map[Coordinate(101, 104)] = "#"
+        map[Coordinate(9,56)] = "#"
         assertThat(test.containsLoop(map, startingPosition)).isTrue
     }
 }
