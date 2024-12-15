@@ -33,6 +33,11 @@ data class Coordinate(val x: Int, val y: Int) {
     fun manhattanDistanceTo(other: Coordinate) = abs(x - other.x) + abs(y - other.y)
 }
 
+data class LongCoordinate(val x: Long, val y: Long) {
+    operator fun times(amount: Long): LongCoordinate = LongCoordinate(x * amount, y * amount)
+    operator fun plus(coordinate: LongCoordinate): LongCoordinate = LongCoordinate(x + coordinate.x, y + coordinate.y)
+}
+
 data class Coordinate3D(val x: Int, val y: Int, val z: Int) {
 
     operator fun minus(other: Coordinate3D): Coordinate3D = Coordinate3D(x - other.x, y - other.y, z - other.z)
