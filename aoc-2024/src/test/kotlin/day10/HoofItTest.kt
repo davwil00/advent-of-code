@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import utils.readGrid
 import utils.readInputLines
-import kotlin.test.asserter
 
 class HoofItTest {
     private val testInput = """
@@ -61,7 +60,7 @@ class HoofItTest {
 
     @Test
     fun `should get correct answer for part 2`() {
-        // assertThat(HoofIt(readInputLines(10)).part2())
-        //    .isEqualTo()
+         assertThat(HoofIt(readGrid(readInputLines(10))).part2())
+            .isEqualTo(1960)
     }
 }

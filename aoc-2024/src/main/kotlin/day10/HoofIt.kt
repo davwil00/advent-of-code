@@ -25,10 +25,29 @@ class HoofIt(input: Map<Coordinate, String>) {
 
         return trailsToExplore.flatMap { calculateScore(it) }.toSet()
     }
+
+    fun part2(): Long {
+        // find all the trailheads
+        val trailHeads = map.filterValues { it == 0 }
+        return trailHeads.keys.sumOf {
+            calculateScoreForDistinctRoutes(it)
+        }
+    }
+
+    fun calculateScoreForDistinctRoutes(currentLocation: Coordinate): Long {
+        if (map.getValue(currentLocation) == 9) {
+            return 1
+        }
+        val trailsToExplore = currentLocation.getAdjacentCoordinates()
+            .filter { map.containsKey(it) }
+            .filter { map[it] == map.getValue(currentLocation) + 1 }
+
+        return trailsToExplore.sumOf { calculateScoreForDistinctRoutes(it) }
+    }
 }
 
 fun main() {
-    val hoofit = HoofIt(readGrid(readInputLines(10)))
-    println(hoofit.part1())
-    //println(hoofit.part2())
+    val hoofIt = HoofIt(readGrid(readInputLines(10)))
+    println(hoofIt.part1())
+    println(hoofIt.part2())
 }
