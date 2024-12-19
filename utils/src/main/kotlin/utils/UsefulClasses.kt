@@ -49,3 +49,12 @@ data class Coordinate3D(val x: Int, val y: Int, val z: Int) {
 
     override fun toString() = "$x,$y,$z"
 }
+
+enum class Direction(val direction: String, val coordinateDelta: Coordinate) {
+    N("^", Coordinate(0, -1)),
+    E(">", Coordinate(1, 0)),
+    S("v", Coordinate(0, 1)),
+    W("<", Coordinate(-1, 0));
+}
+
+data class Location(val position: Coordinate, val direction: Direction)

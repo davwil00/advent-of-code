@@ -128,6 +128,10 @@ class Graph<T: Comparable<T>> (
         return graph.getValue(endName).getWeight()
     }
 
+    fun getWeightToPathOrNull(endName: T): Int? {
+        return graph[endName]?.getWeight()
+    }
+
     /** Prints the path from the source to every vertex (output order is not guaranteed) */
     private fun printAllPaths() {
         for (v in graph.values) {
