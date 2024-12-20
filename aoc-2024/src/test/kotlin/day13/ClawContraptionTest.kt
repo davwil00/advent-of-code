@@ -25,7 +25,7 @@ class ClawContraptionTest {
         Prize: X=18641, Y=10279
     """.trimIndent().lines()
 
-    private val testSubject = GardenGroups(testInput)
+    private val testSubject = ClawContraption(testInput)
 
     @Test
     fun `should find costs for sample input`() {
@@ -34,20 +34,14 @@ class ClawContraptionTest {
     }
 
     @Test
-    fun `should find costs with error for sample input`() {
-        assertThat(testSubject.part2())
-            .isEqualTo(480)
-    }
-
-    @Test
     fun `should get correct answer for part 1`() {
-        assertThat(GardenGroups(readInputLines(12)).part1())
+        assertThat(ClawContraption(readInputLines(13)).part1())
             .isEqualTo(36758)
     }
 
     @Test
     fun `should get correct answer for part 2`() {
-        assertThat(GardenGroups(readInputLines(12)).part2())
+        assertThat(ClawContraption(readInputLines(13)).part2())
             .isEqualTo(76358113886726)
     }
 }

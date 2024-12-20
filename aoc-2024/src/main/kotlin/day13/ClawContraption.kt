@@ -10,7 +10,7 @@ class ClawContraption(input: List<String>) {
 
     val machineButtonBehaviours = parseInput(input)
 
-    fun parseInput(input: List<String>): List<MachineButtonBehaviour> {
+    private fun parseInput(input: List<String>): List<MachineButtonBehaviour> {
         return input.chunked(4).map { def ->
             val (ax, ay) = buttonRegex.matchEntire(def[0])!!.destructured
             val (bx, by) = buttonRegex.matchEntire(def[1])!!.destructured
@@ -69,7 +69,7 @@ class ClawContraption(input: List<String>) {
 }
 
 fun main() {
-    val clawcontraption = ClawContraption(readInputLines(13))
-    //println(clawcontraption.part1())
-    //println(clawcontraption.part2())
+    val clawContraption = ClawContraption(readInputLines(13))
+    println(clawContraption.part1())
+    println(clawContraption.part2())
 }
