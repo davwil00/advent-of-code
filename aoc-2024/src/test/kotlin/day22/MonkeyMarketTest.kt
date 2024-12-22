@@ -12,6 +12,19 @@ class MonkeyMarketTest {
         2024
     """.trimIndent().lines()
 
+    private val testInputForPart2 = """
+        1
+        2
+        3
+        2024
+    """.trimIndent().lines()
+
+    private val testInput2 = """
+        3765927
+        1817375
+        11823314
+    """.trimIndent().lines()
+
     private val testSubject = MonkeyMarket(testInput)
 
     @Test
@@ -44,8 +57,13 @@ class MonkeyMarketTest {
     }
 
     @Test
+    fun `should find the right sequence`() {
+        MonkeyMarket(testInputForPart2).part2()
+    }
+
+    @Test
     fun `should get correct answer for part 2`() {
-        // assertThat(MonkeyMarket(readInputLines(22)).part2())
-        //    .isEqualTo()
+         assertThat(MonkeyMarket(readInputLines(22)).part2())
+             .isEqualTo(1808)
     }
 }
